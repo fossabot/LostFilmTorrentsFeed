@@ -1,4 +1,4 @@
-﻿// <copyright file="HealthCheck.cs" company="Alexander Panfilenok">
+﻿// <copyright file="LastExceptionHealthCheck.cs" company="Alexander Panfilenok">
 // MIT License
 // Copyright (c) 2021 Alexander Panfilenok
 //

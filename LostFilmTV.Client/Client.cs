@@ -75,7 +75,7 @@ namespace LostFilmTV.Client
         /// <returns>Registration object which contains all information about new user.</returns>
         public async Task<RegistrationResponse> RegisterNewAccount(string captchaCookie, string captcha)
         {
-            var guid = Guid.NewGuid().ToString().Replace("-", string.Empty).Substring(0, 16);
+            var guid = Guid.NewGuid().ToString().Replace("-", string.Empty)[..16];
             var request = new HttpRequestMessage(HttpMethod.Post, $"{BaseUrl}/ajaxik.php");
             request.Headers.Add("Cookie", $"PHPSESSID={captchaCookie}");
             request.Content = new FormUrlEncodedContent(new Dictionary<string, string>()
@@ -102,7 +102,7 @@ namespace LostFilmTV.Client
             if (cookie != null)
             {
                 cookie = cookie[(cookie.IndexOf("=") + 1) ..];
-                result.Cookie = cookie.Substring(0, cookie.IndexOf(";"));
+                result.Cookie = cookie[..cookie.IndexOf(";")];
             }
 
             return result;
@@ -241,7 +241,7 @@ namespace LostFilmTV.Client
             var index = series.IndexOf('(');
             if (index > 0)
             {
-                return series.Substring(0, index).Trim();
+                return series[..index].Trim();
             }
 
             return series;
@@ -288,7 +288,7 @@ namespace LostFilmTV.Client
 
         private async Task<Stream> DownloadSeriesCoverFromSearchAsync(string seriesName)
         {
-            var seriesSearchPageUri = $"{BaseUrl}/search/?q={Uri.EscapeUriString(Filtered(seriesName))}";
+            var seriesSearchPageUri = $"{BaseUrl}/search/?q={Uri.EscapeDataString(Filtered(seriesName))}";
             var seriesSearchPage = await this.Execute(new HttpRequestMessage(HttpMethod.Get, seriesSearchPageUri));
             var match = Regex.Match(seriesSearchPage, "<a href=\"/series/([^\"]+)\"");
             if (!match.Success)

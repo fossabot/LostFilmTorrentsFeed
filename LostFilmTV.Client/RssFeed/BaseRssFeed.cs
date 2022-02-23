@@ -82,7 +82,7 @@ namespace LostFilmTV.Client.RssFeed
                 catch (Exception ex)
                 {
                     this.Logger.Log(ex);
-                    throw ex;
+                    throw;
                 }
             }
         }

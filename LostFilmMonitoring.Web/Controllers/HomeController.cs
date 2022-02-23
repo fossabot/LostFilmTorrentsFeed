@@ -53,7 +53,15 @@ namespace LostFilmMonitoring.Web.Controllers
         /// <returns>ActionResult.</returns>
         [HttpGet]
         [Route("")]
-        public async Task<ActionResult> Index() => this.View(await this.presentationService.GetIndexModelAsync());
+        public async Task<ViewResult> Index() => this.View(await this.presentationService.GetIndexModelAsync());
+
+        /// <summary>
+        /// Head endpoint for UptimeRobot.
+        /// </summary>
+        /// <returns>ActionResult.</returns>
+        [HttpHead]
+        [Route("")]
+        public Task<EmptyResult> Head() => Task.FromResult(new EmptyResult());
 
         /// <summary>
         /// Index.

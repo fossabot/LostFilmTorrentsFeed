@@ -24,22 +24,21 @@
 namespace LostFilmMonitoring.Common
 {
     using System;
-    using Sentry;
 
     /// <summary>
     /// Logger implementation.
     /// </summary>
-    public class Logger : ILogger
+    public class ConsoleLogger : ILogger
     {
         private readonly string scope;
         private readonly HealthReporter healthReporter;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Logger"/> class.
+        /// Initializes a new instance of the <see cref="ConsoleLogger"/> class.
         /// </summary>
         /// <param name="name">Scope name.</param>
         /// <param name="healthReporter">HealthReporter.</param>
-        public Logger(string name, HealthReporter healthReporter)
+        public ConsoleLogger(string name, HealthReporter healthReporter)
         {
             this.scope = name;
             this.healthReporter = healthReporter;
@@ -48,28 +47,19 @@ namespace LostFilmMonitoring.Common
         /// <inheritdoc/>
         public ILogger CreateScope(string name)
         {
-            return new Logger(name, this.healthReporter);
+            return new ConsoleLogger(name, this.healthReporter);
         }
 
         /// <inheritdoc/>
         public void Debug(string message)
         {
-            var m = $"DEBUG|{this.scope}|{message}";
-            SentrySdk.AddBreadcrumb(
-                message: m,
-                category: this.scope,
-                level: BreadcrumbLevel.Debug);
-            Console.WriteLine(m);
+            Console.WriteLine($"DEBUG|{this.scope}|{message}");
         }
 
         /// <inheritdoc/>
         public void Error(string message)
         {
             var m = $"ERROR|{this.scope}|{message}";
-            SentrySdk.AddBreadcrumb(
-                message: m,
-                category: this.scope,
-                level: BreadcrumbLevel.Error);
             Console.Error.WriteLine(m);
             this.healthReporter.ReportUnhealthy(m, null);
         }
@@ -78,10 +68,6 @@ namespace LostFilmMonitoring.Common
         public void Fatal(string message)
         {
             var m = $"FATAL|{this.scope}|{message}";
-            SentrySdk.AddBreadcrumb(
-                message: m,
-                category: this.scope,
-                level: BreadcrumbLevel.Critical);
             Console.Error.WriteLine(m);
         }
 
@@ -89,10 +75,6 @@ namespace LostFilmMonitoring.Common
         public void Info(string message)
         {
             var m = $"INFO|{this.scope}|{message}";
-            SentrySdk.AddBreadcrumb(
-                message: m,
-                category: this.scope,
-                level: BreadcrumbLevel.Info);
             Console.WriteLine(m);
         }
 
@@ -107,10 +89,6 @@ namespace LostFilmMonitoring.Common
         public void Warning(string message)
         {
             var m = $"WARNING|{this.scope}|{message}";
-            SentrySdk.AddBreadcrumb(
-                message: m,
-                category: this.scope,
-                level: BreadcrumbLevel.Warning);
             Console.WriteLine(m);
         }
     }

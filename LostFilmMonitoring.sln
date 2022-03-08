@@ -24,6 +24,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LostFilmMonitoring.Updater"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LostFilmTV.Client.Tests", "LostFilmTV.Client.Tests\LostFilmTV.Client.Tests.csproj", "{6A9F95A1-4B9D-4A0E-BF6B-FE70DD6D2FA0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LostFilmMonitoring.Integration.Sentry", "LostFilmMonitoring.Integration.Sentry\LostFilmMonitoring.Integration.Sentry.csproj", "{08C81EB8-D113-4BEC-8013-EEE72D1B6FD1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +60,10 @@ Global
 		{6A9F95A1-4B9D-4A0E-BF6B-FE70DD6D2FA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A9F95A1-4B9D-4A0E-BF6B-FE70DD6D2FA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A9F95A1-4B9D-4A0E-BF6B-FE70DD6D2FA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08C81EB8-D113-4BEC-8013-EEE72D1B6FD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08C81EB8-D113-4BEC-8013-EEE72D1B6FD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08C81EB8-D113-4BEC-8013-EEE72D1B6FD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08C81EB8-D113-4BEC-8013-EEE72D1B6FD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

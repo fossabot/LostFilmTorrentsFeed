@@ -44,7 +44,7 @@ namespace LostFilmMonitoring.Web
         {
             services.AddSingleton<IConfiguration, Configuration>();
             services.AddSingleton<HealthReporter>();
-            services.AddSingleton<ILogger>(provider => new Logger("ROOT", provider.GetService<HealthReporter>()));
+            services.AddSingleton<ILogger>(provider => new ConsoleLogger("ROOT", provider.GetService<HealthReporter>()));
             services.AddSingleton<TorrentFileDAO>();
             services.AddSingleton<SeriesDAO>();
             services.AddSingleton<FeedDAO>();

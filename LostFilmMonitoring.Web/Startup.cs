@@ -27,6 +27,7 @@ namespace LostFilmMonitoring.Web
     using HealthChecks.UI.Client;
     using LostFilmMonitoring.BLL;
     using LostFilmMonitoring.Common;
+    using LostFilmMonitoring.Integration.Sentry;
     using LostFilmMonitoring.Updater;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Diagnostics;
@@ -36,7 +37,6 @@ namespace LostFilmMonitoring.Web
     using Microsoft.AspNetCore.HttpOverrides;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Diagnostics.HealthChecks;
-    using Sentry.AspNetCore;
 
     /// <summary>
     /// Startup.
@@ -79,7 +79,7 @@ namespace LostFilmMonitoring.Web
             });
             app.UseStaticFiles();
             app.UseRouting();
-            app.UseSentryTracing();
+            app.UseSentry();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
